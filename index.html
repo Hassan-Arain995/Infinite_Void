@@ -106,20 +106,52 @@ No manga yet
 <button onclick="addManga()">
 + Add Manga
 </button>
+  <div id="sitesPage"
+style="display:none"
+class="container">
+
+<div class="card">
+
+<h2>Sites</h2>
+
+<div id="siteList">
+
+<div class="mangaItem">
+MangaFire
+</div>
+
+<div class="mangaItem">
+Comix
+</div>
+
+<div class="mangaItem">
+Manganato
+</div>
+
+<div class="mangaItem">
+ManhwaZone
+</div>
 
 </div>
 
+<button onclick="addSite()">
++ Add Site
+</button>
+
+</div>
+
+  </div>
 <div class="navbar">
 
-<div class="navitem">
+<div class="navitem" onclick="showPage('home')">
 🏠 Home
 </div>
 
-<div class="navitem">
+<div class="navitem" onclick="showPage('library')">
 📚 Library
 </div>
 
-<div class="navitem">
+<div class="navitem" onclick="showPage('sites')">
 🌐 Sites
 </div>
 
@@ -128,6 +160,8 @@ No manga yet
 </div>
 
 </div>
+
+
 
 <script>
 
