@@ -1,207 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <link rel="manifest" href="manifest.json">
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport"
+content="width=device-width,initial-scale=1">
 
 <title>Infinite_Void</title>
 
-<style>
+<link rel="manifest"
+href="manifest.json">
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
-}
-
-body{
-background:#0B0717;
-color:white;
-padding-bottom:70px;
-}
-
-.header{
-background:linear-gradient(
-45deg,
-#4B0082,
-#8A2BE2
-);
-
-padding:20px;
-text-align:center;
-font-size:28px;
-font-weight:bold;
-}
-
-.container{
-padding:15px;
-}
-
-.card{
-background:#1a102d;
-padding:15px;
-margin-bottom:15px;
-border-radius:15px;
-}
-
-.card h2{
-margin-bottom:10px;
-}
-
-button{
-width:100%;
-padding:12px;
-border:none;
-border-radius:10px;
-background:#7B2EFF;
-color:white;
-font-size:16px;
-}
-
-.navbar{
-position:fixed;
-bottom:0;
-width:100%;
-background:#13091f;
-display:flex;
-justify-content:space-around;
-padding:15px;
-}
-
-.navitem{
-cursor:pointer;
-}
-
-.mangaItem{
-margin-top:10px;
-padding:10px;
-background:#25173d;
-border-radius:10px;
-}
-
-</style>
+<link rel="stylesheet"
+href="style.css">
 
 </head>
 
 <body>
 
 <div class="header">
+
 ∞ Infinite_Void
+
 </div>
+
+
+<!-- HOME PAGE -->
 
 <div class="container">
 
 <div class="card">
 
-<h2>Today's Updates</h2>
+<h2>
+Today's Updates
+</h2>
 
 <div id="mangaList">
+
 No manga yet
+
 </div>
 
 </div>
 
 <button onclick="addManga()">
+
 + Add Manga
+
 </button>
-  <div id="sitesPage"
-style="display:none"
-class="container">
+
+</div>
+
+
+<!-- SITES PAGE -->
+
+<div id="sitesPage"
+class="container"
+style="display:none">
 
 <div class="card">
 
-<h2>Sites</h2>
+<h2>
+
+Sites
+
+</h2>
 
 <div id="siteList">
 
-<div class="mangaItem">
-MangaFire
 </div>
 
-<div class="mangaItem">
-Comix
-</div>
-
-<div class="mangaItem">
-Manganato
-</div>
-
-<div class="mangaItem">
-ManhwaZone
-</div>
-
-</div>
+<br>
 
 <button onclick="addSite()">
+
 + Add Site
+
 </button>
 
 </div>
 
-  </div>
+</div>
+
+
+<!-- NAVBAR -->
+
 <div class="navbar">
 
-<div class="navitem" onclick="showPage('home')">
+<div
+class="navitem"
+onclick="showPage('home')">
+
 🏠 Home
+
 </div>
 
-<div class="navitem" onclick="showPage('library')">
+<div
+class="navitem">
+
 📚 Library
+
 </div>
 
-<div class="navitem" onclick="showPage('sites')">
+<div
+class="navitem"
+onclick="showPage('sites')">
+
 🌐 Sites
-</div>
-
-<div class="navitem">
-⚙
-</div>
 
 </div>
 
+<div
+class="navitem">
 
+⚙️
 
-<script>
-
-let mangas=[];
-
-function addManga(){
-
-let title=prompt(
-"Enter Manga Name"
-);
-
-if(title){
-
-mangas.push(title);
-
-render();
-
-}
-
-}
-
-function render(){
-
-let list=document.getElementById(
-"mangaList"
-);
-
-list.innerHTML="";
-
-mangas.forEach(m=>{
-
-list.innerHTML+=`
-<div class="mangaItem">
-${m}
 </div>
-`;
 
-});
+</div>
 
-}
+<script src="app.js">
 
 </script>
 
