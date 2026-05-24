@@ -25,10 +25,10 @@ href="style.css">
 
 </div>
 
+<!-- HOME -->
 
-<!-- HOME PAGE -->
-
-<div class="container">
+<div id="homePage"
+class="container">
 
 <div class="card">
 
@@ -53,7 +53,32 @@ No manga yet
 </div>
 
 
-<!-- SITES PAGE -->
+<!-- LIBRARY -->
+
+<div id="libraryPage"
+class="container"
+style="display:none">
+
+<div class="card">
+
+<h2>
+
+Library
+
+</h2>
+
+<div id="libraryList">
+
+No manga
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- SITES -->
 
 <div id="sitesPage"
 class="container"
@@ -84,7 +109,35 @@ Sites
 </div>
 
 
-<!-- NAVBAR -->
+<!-- SETTINGS -->
+
+<div id="settingsPage"
+class="container"
+style="display:none">
+
+<div class="card">
+
+<h2>
+
+Settings
+
+</h2>
+
+<button onclick="
+localStorage.clear();
+location.reload();
+">
+
+Clear Data
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- NAV -->
 
 <div class="navbar">
 
@@ -92,14 +145,15 @@ Sites
 class="navitem"
 onclick="showPage('home')">
 
-🏠 Home
+🏠
 
 </div>
 
 <div
-class="navitem">
+class="navitem"
+onclick="showPage('library')">
 
-📚 Library
+📚
 
 </div>
 
@@ -107,12 +161,13 @@ class="navitem">
 class="navitem"
 onclick="showPage('sites')">
 
-🌐 Sites
+🌐
 
 </div>
 
 <div
-class="navitem">
+class="navitem"
+onclick="showPage('settings')">
 
 ⚙️
 
@@ -120,9 +175,7 @@ class="navitem">
 
 </div>
 
-<script src="app.js">
-
-</script>
+<script src="app.js"></script>
 
 </body>
 
