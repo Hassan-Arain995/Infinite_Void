@@ -1,69 +1,67 @@
-let mangas =
-JSON.parse(
-localStorage.getItem("mangas")
-) || [];
+let sites = JSON.parse(
+localStorage.getItem("sites")
+) || [
+"MangaFire",
+"Comix",
+"Manganato",
+"ManhwaZone",
+"ManhuaUS",
+"KingofShojo",
+"Lolobun"
+];
 
-function addManga(){
-
-let title=prompt("Manga name");
-let link=prompt("Reading link");
-let day=prompt("Release day");
-
-if(title && link){
-
-mangas.push({
-title:title,
-link:link,
-day:day
-});
-
-saveData();
-renderMangas();
-
-}
-
-}
-
-function saveData(){
+function saveSites(){
 
 localStorage.setItem(
-"mangas",
-JSON.stringify(mangas)
+"sites",
+JSON.stringify(sites)
 );
 
 }
 
-function renderMangas(){
+function addSite(){
+
+let site=prompt(
+"Enter Site Name"
+);
+
+if(site){
+
+sites.push(site);
+
+saveSites();
+
+renderSites();
+
+}
+
+}
+
+function renderSites(){
 
 let list=
 document.getElementById(
-"mangaList"
+"siteList"
 );
+
+if(!list) return;
 
 list.innerHTML="";
 
-if(mangas.length===0){
+sites.forEach((site,index)=>{
 
-list.innerHTML=
-"No manga yet";
-
-return;
-
-}
-
-mangas.forEach((m,index)=>{
-
-list.innerHTML += `
+list.innerHTML+=`
 
 <div class="mangaItem">
 
-<h3>${m.title}</h3>
+${site}
 
-<p>${m.day}</p>
+<button onclick="
+deleteSite(${index})
+">
 
-<button onclick=
-"window.open('${m.link}')">
-Read
+Delete
+
 </button>
 
 </div>
@@ -74,4 +72,36 @@ Read
 
 }
 
-renderMangas();
+function deleteSite(index){
+
+sites.splice(index,1);
+
+saveSites();
+
+renderSites();
+
+}
+
+function showPage(page){
+
+document.querySelector(
+".container"
+).style.display=
+page==="home"
+?
+"block"
+:
+"none";
+
+document.getElementById(
+"sitesPage"
+).style.display=
+page==="sites"
+?
+"block"
+:
+"none";
+
+}
+
+renderSites();
