@@ -1,182 +1,81 @@
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport"
-content="width=device-width,initial-scale=1">
-
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Infinite_Void</title>
 
-<link rel="manifest"
-href="manifest.json">
-
-<link rel="stylesheet"
-href="style.css">
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="style.css">
 
 </head>
-
 <body>
 
-<div class="header">
-
+<header class="header">
 ∞ Infinite_Void
+</header>
 
-</div>
-
-<!-- HOME -->
-
-<div id="homePage"
-class="container">
+<div id="homePage" class="page">
 
 <div class="card">
-
-<h2>
-Today's Updates
-</h2>
-
-<div id="mangaList">
-
-No manga yet
-
-</div>
-
+<h2>Today's Updates</h2>
+<div id="mangaList"></div>
 </div>
 
 <button onclick="addManga()">
-
 + Add Manga
-
 </button>
 
 </div>
 
-
-<!-- LIBRARY -->
-
-<div id="libraryPage"
-class="container"
-style="display:none">
+<div id="sitesPage" class="page hidden">
 
 <div class="card">
 
-<h2>
+<h2>Sites</h2>
 
-Library
-
-</h2>
-
-<div id="libraryList">
-
-No manga
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- SITES -->
-
-<div id="sitesPage"
-class="container"
-style="display:none">
-
-<div class="card">
-
-<h2>
-
-Sites
-
-</h2>
-
-<div id="siteList">
-
-</div>
-
-<br>
+<div id="siteList"></div>
 
 <button onclick="addSite()">
-
 + Add Site
-
 </button>
 
 </div>
 
 </div>
 
-
-<!-- SETTINGS -->
-
-<div id="settingsPage"
-class="container"
-style="display:none">
+<div id="settingsPage" class="page hidden">
 
 <div class="card">
 
-<h2>
+<h2>Settings</h2>
 
-Settings
-
-</h2>
-
-<button onclick="
-localStorage.clear();
-location.reload();
-">
-
+<button onclick="clearData()">
 Clear Data
-
 </button>
 
 </div>
 
 </div>
 
+<nav class="navbar">
 
-<!-- NAV -->
-
-<div class="navbar">
-
-<div
-class="navitem"
-onclick="showPage('home')">
-
+<div onclick="showPage('homePage')">
 🏠
-
 </div>
 
-<div
-class="navitem"
-onclick="showPage('library')">
-
-📚
-
-</div>
-
-<div
-class="navitem"
-onclick="showPage('sites')">
-
+<div onclick="showPage('sitesPage')">
 🌐
-
 </div>
 
-<div
-class="navitem"
-onclick="showPage('settings')">
-
+<div onclick="showPage('settingsPage')">
 ⚙️
-
 </div>
 
-</div>
+</nav>
 
 <script src="app.js"></script>
 
 </body>
-
 </html>
