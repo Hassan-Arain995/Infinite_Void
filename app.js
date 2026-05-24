@@ -1,27 +1,37 @@
-// ===== Manga Storage =====
+// ===== Storage =====
 
 let mangas = JSON.parse(
 localStorage.getItem("mangas")
 ) || [];
 
-// ===== Sites Storage =====
-
 let sites = JSON.parse(
 localStorage.getItem("sites")
 ) || [
 
-"MangaFire",
-"Comix",
-"Manganato",
-"ManhwaZone",
-"ManhuaUS",
-"KingofShojo",
-"Lolobun"
+{
+name:"MangaFire",
+url:"https://mangafire.to"
+},
+
+{
+name:"Comix",
+url:"https://comix.to"
+},
+
+{
+name:"Manganato",
+url:"https://www.manganato.gg"
+},
+
+{
+name:"ManhwaZone",
+url:"https://manhwazone.com"
+}
 
 ];
 
 
-// ===== Save Manga =====
+// ===== Save =====
 
 function saveMangas(){
 
@@ -31,9 +41,6 @@ JSON.stringify(mangas)
 );
 
 }
-
-
-// ===== Save Sites =====
 
 function saveSites(){
 
@@ -49,16 +56,20 @@ JSON.stringify(sites)
 
 function addManga(){
 
-let title = prompt(
-"Enter Manga Name"
+let title=
+prompt("Manga name");
+
+let link=
+prompt("Reading link");
+
+let cover=
+prompt(
+"Cover image URL"
 );
 
-let link = prompt(
-"Enter Manga Link"
-);
-
-let day = prompt(
-"Release Day"
+let day=
+prompt(
+"Release day"
 );
 
 if(title && link){
@@ -67,6 +78,7 @@ mangas.push({
 
 title:title,
 link:link,
+cover:cover,
 day:day
 
 });
@@ -80,15 +92,16 @@ renderMangas();
 }
 
 
-// ===== Show Manga =====
+// ===== Render Manga =====
 
 function renderMangas(){
 
-let list = document.getElementById(
+let list=
+document.getElementById(
 "mangaList"
 );
 
-if(!list) return;
+if(!list)return;
 
 list.innerHTML="";
 
@@ -101,17 +114,35 @@ return;
 
 }
 
-mangas.forEach((m,index)=>{
+mangas.forEach(
+(m,index)=>{
 
 list.innerHTML += `
 
 <div class="mangaItem">
 
-<h3>${m.title}</h3>
+<img
+src="${
+m.cover ||
+'https://placehold.co/300x400'
+}"
+width="100%"
+style="
+border-radius:10px;
+margin-bottom:10px;
+">
+
+<h3>
+
+${m.title}
+
+</h3>
 
 <p>
+
 Release:
 ${m.day}
+
 </p>
 
 <button onclick="
@@ -123,8 +154,6 @@ window.open(
 Read
 
 </button>
-
-<br><br>
 
 <button onclick="
 deleteManga(
@@ -161,17 +190,29 @@ renderMangas();
 }
 
 
+
 // ===== Add Site =====
 
 function addSite(){
 
-let site = prompt(
-"Enter Site Name"
+let name=
+prompt(
+"Site Name"
 );
 
-if(site){
+let url=
+prompt(
+"Site URL"
+);
 
-sites.push(site);
+if(name && url){
+
+sites.push({
+
+name:name,
+url:url
+
+});
 
 saveSites();
 
@@ -182,16 +223,17 @@ renderSites();
 }
 
 
-// ===== Show Sites =====
+
+// ===== Render Sites =====
 
 function renderSites(){
 
-let list =
+let list=
 document.getElementById(
 "siteList"
 );
 
-if(!list) return;
+if(!list)return;
 
 list.innerHTML="";
 
@@ -202,17 +244,39 @@ list.innerHTML += `
 
 <div class="mangaItem">
 
-${site}
+<h3>
 
-<br><br>
+${site.name}
+
+</h3>
 
 <button onclick="
-deleteSite(
+window.open(
+'${site.url}'
+)
+">
+
+Open
+
+</button>
+
+<button onclick="
+moveUp(
 ${index}
 )
 ">
 
-Delete
+↑
+
+</button>
+
+<button onclick="
+moveDown(
+${index}
+)
+">
+
+↓
 
 </button>
 
@@ -225,20 +289,56 @@ Delete
 }
 
 
-// ===== Delete Site =====
 
-function deleteSite(index){
+// ===== Sorting =====
 
-sites.splice(
-index,
-1
-);
+function moveUp(index){
+
+if(index>0){
+
+[
+sites[index],
+sites[index-1]
+
+]=[
+
+sites[index-1],
+sites[index]
+
+];
 
 saveSites();
 
 renderSites();
 
 }
+
+}
+
+
+function moveDown(index){
+
+if(index<sites.length-1){
+
+[
+sites[index],
+sites[index+1]
+
+]=[
+
+sites[index+1],
+sites[index]
+
+];
+
+saveSites();
+
+renderSites();
+
+}
+
+}
+
 
 
 // ===== Navigation =====
@@ -255,30 +355,24 @@ document.getElementById(
 "sitesPage"
 );
 
-if(page==="home"){
-
 home.style.display=
-"block";
+page==="home"
+?
+"block"
+:
+"none";
 
 sitesPage.style.display=
+page==="sites"
+?
+"block"
+:
 "none";
 
 }
 
-if(page==="sites"){
 
-home.style.display=
-"none";
-
-sitesPage.style.display=
-"block";
-
-}
-
-}
-
-
-// ===== Start App =====
+// ===== Start =====
 
 renderMangas();
 
